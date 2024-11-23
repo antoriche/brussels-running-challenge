@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - n 16
+      - cd ./shared
+      - npm run build
+      - cd ../api
+      - npm install
+      - rm -rf ./node_modules/shared
+      - cp -r ../shared/dist ./node_modules/shared
+  build:
+    commands:
+      - ENV=${ENV:-"dev"}
+      - printenv | grep "$PREFIX" > .env
+      - npx serverless deploy --stage "$ENV"

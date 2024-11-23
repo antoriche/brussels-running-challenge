@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2024,
+    "sourceType": "module",
+    "project": true,
+    "tsconfigRootDir": "app"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["@typescript-eslint", "@eslint-react", "react", "storybook"],
+  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended"],
+  "rules": {
+    "react/prop-types": ["warn"],
+    "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+    "react/jsx-pascal-case": "error",
+    "react/jsx-boolean-value": "warn",
+    "react/boolean-prop-naming": [
+      "warn",
+      {
+        "rule": "^(is|has|should|will|can)[A-Z]([A-Za-z0-9]?)+",
+        "message": "Boolean prop name should start with 'is', 'has', 'should', 'will', or 'can'."
+      }
+    ],
+    "react/function-component-definition": "error",
+    "react/no-multi-comp": "error",
+    "react/hook-use-state": ["warn", { "allowDestructuredState": true }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-console": "warn",
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "variable",
+        "types": ["boolean"],
+        "format": ["PascalCase"], // actually camelCase with prefix
+        "prefix": ["is", "should", "has", "can", "did", "will"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+      "extends": ["plugin:storybook/recommended"],
+      "rules": {
+        "prettier/prettier": "off"
+      }
+    }
+  ]
+}

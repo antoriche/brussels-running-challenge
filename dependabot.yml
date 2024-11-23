@@ -1,0 +1,27 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    versioning-strategy: increase-if-necessary
+  - package-ecosystem: "npm"
+    directory: "/api"
+    schedule:
+      interval: "monthly"
+    versioning-strategy: increase-if-necessary
+  - package-ecosystem: "npm"
+    directory: "/app"
+    schedule:
+      interval: "monthly"
+    versioning-strategy: increase-if-necessary
+  - package-ecosystem: "npm"
+    directory: "/shared"
+    schedule:
+      interval: "monthly"
+    versioning-strategy: increase-if-necessary
+  - package-ecosystem: "npm"
+    directory: "/infra"
+    schedule:
+      interval: "monthly"
+    versioning-strategy: increase-if-necessary

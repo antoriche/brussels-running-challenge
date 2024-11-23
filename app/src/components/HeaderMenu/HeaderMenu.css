@@ -1,0 +1,21 @@
+.trigger {
+  font-size: 18px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.header-menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-menu-right {
+  display: flex;
+  align-items: baseline;
+  margin-right: 12px;
+}

@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
+    environment:
+      REACT_APP_SKIP_AUTH: "SKIP"
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test

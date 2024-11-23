@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - n 16
+      - cd ./shared
+      - npm run build
+      - cd ../app
+      - npm install --unsafe-perm
+  build:
+    commands:
+      - printenv > .env
+      - npm run build
+artifacts:
+  files:
+    - "**/*"
+  name: app_build_output
+  base-directory: app/build

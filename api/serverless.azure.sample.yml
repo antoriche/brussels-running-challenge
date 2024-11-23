@@ -1,0 +1,41 @@
+service: boilerplate-api
+
+frameworkVersion: "3"
+
+useDotenv: true
+variablesResolutionMode: 20210326
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+plugins:
+  - serverless-azure-functions
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+provider:
+  name: azure
+  region: westeurope
+  runtime: nodejs18
+  lambdaHashingVersion: "20201221"
+  timeout: 30
+
+  subscriptionId: ${env:AZURE_SUBSCRIPTION_ID, "ccd99dc3-97f1-4658-9929-3df405387582"}
+  resourceGroup: ${env:AZURE_RESOURCE_GROUP, null}
+  deploymentName: ${env:DEPLOYMENT_NAME, null}
+  functionApp:
+    extensionVersion: "~4"
+
+functions:
+  hello:
+    handler: src/hello.azureHandler
+    events:
+      - http: true
+        authLevel: anonymous
+        route: hello
+      - http: true
+        direction: out
+        name: res

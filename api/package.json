@@ -1,0 +1,35 @@
+{
+    "name": "boilerplate-api",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "sls offline start --reloadHandler",
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "postinstall": "(cd ../shared && npm run build)",
+        "deploy": "sls deploy",
+        "predeploy": "npm run setup:serverless",
+        "setup:serverless": "ts-node src/setup/setupServerlessAzure.ts"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.133",
+        "serverless": "^3.38.0",
+        "serverless-azure-functions": "^2.2.1",
+        "serverless-dotenv-plugin": "^6.0.0",
+        "serverless-middleware": "^3.3.0",
+        "serverless-offline": "^13.3.2",
+        "serverless-plugin-typescript": "^2.1.5",
+        "serverless-webpack": "^5.13.0",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.3.3",
+        "webpack": "5.89.0",
+        "webpack-node-externals": "^3.0.0"
+    },
+    "dependencies": {
+        "@aws-sdk/client-secrets-manager": "^3.504.0",
+        "@azure/functions": "^4.2.0",
+        "jwt-decode": "^4.0.0",
+        "knex": "^3.1.0",
+        "lodash": "^4.17.21",
+        "pg": "^8.11.3",
+        "shared": "file:../shared/dist"
+    }
+}

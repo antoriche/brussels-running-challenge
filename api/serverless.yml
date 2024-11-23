@@ -1,0 +1,47 @@
+service: boilerplate-api
+
+frameworkVersion: "3"
+
+useDotenv: true
+variablesResolutionMode: 20210326
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-dotenv-plugin
+  #- serverless-middleware
+
+provider:
+  name: aws
+  region: eu-west-1
+  runtime: nodejs18.x
+  lambdaHashingVersion: "20201221"
+  timeout: 30
+
+  apiGateway:
+    restApiId: ${env:API_GATEWAY_ID, ""}
+    restApiRootResourceId: ${env:API_GATEWAY_ROOT_ID, ""}
+
+custom:
+  serverless-offline:
+    httpPort: ${env:PORT, 3001}
+    host: "0.0.0.0"
+# middleware:
+#   pre:
+#     - src/middlewares/oauth.loadCookies
+
+functions:
+  oauth:
+    handler: src/oauth.handler
+    events:
+      - http:
+          path: /oauth
+          method: post
+          cors: true
+  listActivities:
+    handler: src/strava.listActivities
+    events:
+      - http:
+          path: /strava/activities
+          method: get
+          cors: true

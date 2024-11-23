@@ -1,0 +1,17 @@
+{
+  "name": "infra",
+  "main": "index.ts",
+  "dependencies": {
+    "@aws-sdk/client-cloudfront": "^3.504.0",
+    "@aws-sdk/client-codepipeline": "^3.484.0",
+    "@pulumi/aws": "^6.17.0",
+    "@pulumi/awsx": "^2.4.0",
+    "@pulumi/azure": "^5.64.0",
+    "@pulumi/azure-native": "^2.27.0",
+    "@pulumi/pulumi": "^3.104.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.1",
+    "typescript": "^5.3.3"
+  }
+}

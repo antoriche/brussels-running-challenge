@@ -1,0 +1,111 @@
+{
+  "name": "boilerplate-app",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.2.5",
+    "@aws-amplify/ui-react": "^5.0.6",
+    "@observablehq/plot": "^0.6.13",
+    "@tanstack/react-query": "^5.51.11",
+    "@tanstack/react-query-devtools": "^5.51.11",
+    "@turf/turf": "^7.1.0",
+    "antd": "^5.12.2",
+    "aws-amplify": "^5.3.6",
+    "axios": "^1.6.3",
+    "d3": "^7.8.5",
+    "geojson": "^0.5.0",
+    "i": "^0.3.7",
+    "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
+    "npm": "^10.2.5",
+    "polyline-decode": "^0.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.8.0",
+    "react-router-dom": "^6.21.1",
+    "shared": "file:../shared/dist",
+    "styled-components": "^5.3.3",
+    "svg-pan-zoom-container": "^0.6.1",
+    "use-query-params": "^2.2.1",
+    "web-vitals": "^3.5.2",
+    "workbox-background-sync": "^7.0.0",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^7.0.0",
+    "workbox-core": "^7.0.0",
+    "workbox-expiration": "^7.0.0",
+    "workbox-google-analytics": "^7.0.0",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^7.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "preinstall": "(cd ../shared && npm run build)",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@chromatic-com/storybook": "^1.6.1",
+    "@storybook/addon-essentials": "^8.2.5",
+    "@storybook/addon-interactions": "^8.2.5",
+    "@storybook/addon-links": "^8.2.5",
+    "@storybook/addon-onboarding": "^8.2.5",
+    "@storybook/addon-queryparams": "^7.0.1",
+    "@storybook/blocks": "^8.2.5",
+    "@storybook/preset-create-react-app": "^8.2.5",
+    "@storybook/react": "^8.2.5",
+    "@storybook/react-webpack5": "^8.2.5",
+    "@storybook/test": "^8.2.5",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^14.3.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^27.4.1",
+    "@types/lodash": "^4.14.180",
+    "@types/node": "^17.0.25",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.18",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-storybook": "^0.8.0",
+    "eslint-plugin-unused-imports": "^4.1.3",
+    "msw": "^2.3.4",
+    "msw-storybook-addon": "^2.0.3",
+    "prettier": "3.0.0",
+    "prettier-eslint": "^16.3.0",
+    "prop-types": "^15.8.1",
+    "react-scripts": "5.0.1",
+    "storybook": "^8.2.5",
+    "storybook-addon-manual-mocks": "^1.0.4",
+    "typescript": "^4.6.3",
+    "webpack": "^5.93.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

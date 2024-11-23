@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+
+  "compounds": [
+    {
+      "name": "Run All",
+      "configurations": ["Transpile TypeScript from Shared Resources", "Run API", "Run App", "Storybook"],
+      "stopAll": true,
+      "presentation": {
+        "hidden": false,
+        "group": "",
+        "order": 1
+      }
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Transpile TypeScript from Shared Resources",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/shared",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run API",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/api",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run App",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Storybook",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "storybook", "--", "--ci"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
