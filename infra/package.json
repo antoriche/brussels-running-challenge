@@ -6,7 +6,7 @@
     "@aws-sdk/client-codepipeline": "^3.484.0",
     "@pulumi/aws": "^6.17.0",
     "@pulumi/awsx": "^2.4.0",
-    "@pulumi/azure": "^5.64.0",
+    "@pulumi/azure": "^6.10.0",
     "@pulumi/azure-native": "^2.27.0",
     "@pulumi/pulumi": "^3.104.1"
   },
