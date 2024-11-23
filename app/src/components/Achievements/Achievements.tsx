@@ -1,21 +1,59 @@
 import React from "react";
 import { useRunPath } from "../../hooks/useRunPath";
 import { Col, Progress, Row } from "antd";
-import challenges from "./challenges";
+import challenges, { Challenge } from "./challenges";
 
+import { useWorker } from "@koale/useworker";
+import { useQuery } from "@tanstack/react-query";
+import { FeatureCollection, GeoJsonProperties, LineString } from "geojson";
+
+const workerFn = (ranGeojson: FeatureCollection<LineString, GeoJsonProperties>, challenges: Challenge[]) => {
+  console.log("worker");
+  return challenges
+    .map<
+      Challenge & {
+        percent: number;
+      }
+    >((challenge) => ({
+      ...challenge,
+      percent: challenge.percentage(ranGeojson) * 100,
+    }))
+    .sort((a, b) => b.percent - a.percent);
+};
 
 function Achievements() {
   const ranGeojson = useRunPath();
+  const [worker, workerController] = useWorker(workerFn);
 
-  console.log(challenges);
+  const { data: sortedChallenges = [] } = useQuery({
+    queryKey: ["sortedChallenges", ranGeojson],
+    queryFn: async () => {
+      if (!ranGeojson) return [];
+      await workerController.kill();
 
-  return <div style={{
-    padding: 30
-  }}><Row gutter={[16, 16]} style={{}} justify={"start"}>
-      {challenges.map((challenge) => {
-        const percent = ranGeojson ? challenge.percentage(ranGeojson) * 100 : 0;
-        return [percent, (
-          <Col key={challenge.name} span={8} sm={24} xs={24} md={12} xl={8}
+      console.log("navigator", navigator.serviceWorker);
+      console.log("queryFn", ranGeojson);
+      const result = await worker(ranGeojson, challenges);
+      console.log("result", result);
+      return result;
+    },
+  });
+
+  return (
+    <div
+      style={{
+        padding: 30,
+      }}
+    >
+      <Row gutter={[16, 16]} style={{}} justify={"start"}>
+        {sortedChallenges.map((challenge) => (
+          <Col
+            key={challenge.name}
+            span={8}
+            sm={24}
+            xs={24}
+            md={12}
+            xl={8}
             style={{
               display: "flex",
               justifyContent: "center",
@@ -34,16 +72,13 @@ function Achievements() {
               }}
             >
               <h3>{challenge.name}</h3>
-              <Progress
-                percent={percent}
-                format={(percent) => percent && `${percent.toFixed(0)}%`}
-                strokeColor="gold"
-              />
+              <Progress percent={challenge.percent} format={(percent = 0) => `${percent.toFixed(0)}%`} strokeColor="gold" />
             </div>
           </Col>
-        )] as const;
-      }).sort((a, b) => b[0] - a[0]).map(([, component]) => component)}
-    </Row></div>
+        ))}
+      </Row>
+    </div>
+  );
 }
 
 export default Achievements;

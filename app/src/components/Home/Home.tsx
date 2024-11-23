@@ -3,7 +3,7 @@ import Map from "./Map";
 import LoginWithStrava from "../Login/LoginWithStrava/LoginWithStrava";
 import { logout, useIsLogged, useOAuth } from "../../services/auth";
 import { LogoutOutlined } from "@ant-design/icons";
-import { Spin, Tooltip } from "antd";
+import { ConfigProvider, Spin, Tooltip } from "antd";
 import Achievements from "../Achievements/Achievements";
 import { useRunPath } from "../../hooks/useRunPath";
 import { useActivities } from "../../hooks/activities";
@@ -13,7 +13,7 @@ function Home() {
   const oauth = useOAuth();
 
   const ranGeojson = useRunPath();
-  const { isLoading } = useActivities();
+  const { data: activities, isLoading } = useActivities();
 
   return (
     <div
@@ -71,14 +71,32 @@ function Home() {
         <div style={{ margin: "20px 0" }}>
           <Map highlight={ranGeojson} />
         </div>
-        {isLoading && <Spin />}
+
         {isLogged === false ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
             <LoginWithStrava />
           </div>
         ) : (
           <>
-            <Achievements />
+            {isLoading && (
+              <div
+                style={{
+                  color: "white",
+                  display: "flex",
+                  gap: 10,
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <ConfigProvider theme={{ token: { colorPrimary: "gold" } }}>
+                  <Spin />
+                </ConfigProvider>
+                Loading...
+              </div>
+            )}
+            {activities && <Achievements />}
           </>
         )}
       </div>
