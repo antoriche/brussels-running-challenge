@@ -3,15 +3,17 @@ import Map from "./Map";
 import LoginWithStrava from "../Login/LoginWithStrava/LoginWithStrava";
 import { logout, useIsLogged, useOAuth } from "../../services/auth";
 import { LogoutOutlined } from "@ant-design/icons";
-import { Tooltip } from "antd";
+import { Spin, Tooltip } from "antd";
 import Achievements from "../Achievements/Achievements";
 import { useRunPath } from "../../hooks/useRunPath";
+import { useActivities } from "../../hooks/activities";
 
 function Home() {
   const isLogged = useIsLogged();
   const oauth = useOAuth();
 
   const ranGeojson = useRunPath();
+  const { isLoading } = useActivities();
 
   return (
     <div
@@ -25,7 +27,7 @@ function Home() {
         //justifyContent: "center",
         padding: 0,
         margin: 0,
-        paddingTop: '15vh'
+        paddingTop: "15vh",
       }}
     >
       {isLogged && (
@@ -69,6 +71,7 @@ function Home() {
         <div style={{ margin: "20px 0" }}>
           <Map highlight={ranGeojson} />
         </div>
+        {isLoading && <Spin />}
         {isLogged === false ? (
           <div style={{ display: "flex", justifyContent: "center" }}>
             <LoginWithStrava />
