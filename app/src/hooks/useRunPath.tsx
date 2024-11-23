@@ -1,6 +1,5 @@
 import { useActivities } from "./activities";
 import { createIntermediatePointsInFeatureCollection, mapRunningPathOnStreets, polylineToGeojson } from "../services/mapUtils";
-import brusselsStreets from "../data/brussels_streets.json";
 import { useQuery } from "@tanstack/react-query";
 import { useWorker } from "@koale/useworker";
 
@@ -40,26 +39,35 @@ const workerFn = async (
   return running_streets;
 };
 
+async function w(...x) {
+  //const i = await import("../services/mapUtils");
+  return { a: "b", x };
+}
+
 export const useRunPath = () => {
   const { data } = useActivities();
 
-  const [worker, workerController] = useWorker(workerFn, {});
+  const [worker, workerController] = useWorker(w, {});
 
   const { data: runPath } = useQuery({
     queryKey: ["runPath", data],
     queryFn: async () => {
       if (!data) return null;
-      console.log("navigator", navigator.serviceWorker);
       console.log("workerController.status", workerController.status);
       await workerController.kill();
       console.log("queryFn", data);
-      const d = await worker(data, brusselsStreets, {
+
+      const d = await worker(
+        createIntermediatePointsInFeatureCollection.toString(),
+        "b",
+        /*data, brusselsStreets, {
         createIntermediatePointsInFeatureCollection_: createIntermediatePointsInFeatureCollection,
         mapRunningPathOnStreets_: mapRunningPathOnStreets,
         polylineToGeojson_: polylineToGeojson,
-      });
+      }*/
+      );
       console.log("result", d);
-      return d;
+      return null;
     },
   });
   return runPath ?? null;
