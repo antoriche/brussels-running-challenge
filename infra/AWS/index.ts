@@ -107,7 +107,8 @@ const codepipeline = new aws.codepipeline.Pipeline(identifier, {
                 REACT_APP_COGNITO_REGION: region,
                 REACT_APP_COGNITO_USER_POOL_ID: pool.id,
                 REACT_APP_COGNITO_APP_CLIENT_ID: client.id,
-                DISABLE_ESLINT_PLUGIN:true
+                REACT_APP_DOMAIN: cloudfront.domainName,
+                DISABLE_ESLINT_PLUGIN: true,
               },
               codepipelineBucket: codepipelineBucket.arn,
             }),
@@ -130,7 +131,7 @@ const codepipeline = new aws.codepipeline.Pipeline(identifier, {
                 APIENV_COGNITO_ARN: pool.arn,
                 API_GATEWAY_ID: apiGateway.id,
                 API_GATEWAY_ROOT_ID: apiGateway.rootResourceId,
-                APIENV_STRAVA_CLIENT_SECRET: config.require('strava-client-secret')
+                APIENV_STRAVA_CLIENT_SECRET: config.require("strava-client-secret"),
               },
               environmentSecretKeys: ["PULUMI_ACCESS_TOKEN"],
               codepipelineBucket: codepipelineBucket.arn,

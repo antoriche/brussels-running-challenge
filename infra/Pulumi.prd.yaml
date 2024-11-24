@@ -4,6 +4,7 @@ config:
     APIENV_STRAVA_CLIENT_ID: 139884
   brussels-running-challenge:app-env:
     REACT_APP_SKIP_AUTH: SKIP
+    REACT_APP_STRAVA_CLIENT_ID: 139884
   brussels-running-challenge:strava-client-secret:
     secure: AAABALeAmGqBhS8YU/Te4CS3e7GBgBoWmePKvu8ci1C2DjM5HCax/4g5mvyPBibVJLO9pRRDVZU98bFVDi2toWhZaP8PhfWb
   # brussels-running-challenge:domain:
@@ -12,4 +13,3 @@ config:
   #   zoneId: Z2KNORYF9I04LR
   brussels-running-challenge:branch: main
   brussels-running-challenge:repository: antoriche/brussels-running-challenge
-  
