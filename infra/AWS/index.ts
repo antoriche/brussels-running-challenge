@@ -107,6 +107,7 @@ const codepipeline = new aws.codepipeline.Pipeline(identifier, {
                 REACT_APP_COGNITO_REGION: region,
                 REACT_APP_COGNITO_USER_POOL_ID: pool.id,
                 REACT_APP_COGNITO_APP_CLIENT_ID: client.id,
+                DISABLE_ESLINT_PLUGIN:true
               },
               codepipelineBucket: codepipelineBucket.arn,
             }),
