@@ -1,4 +1,4 @@
-service: boilerplate-api
+service: brussels-running-challenge-api
 
 frameworkVersion: "3"
 

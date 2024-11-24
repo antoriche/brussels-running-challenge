@@ -1,5 +1,5 @@
 {
-    "name": "boilerplate-api",
+    "name": "brussels-running-challenge-api",
     "version": "1.0.0",
     "scripts": {
         "start": "sls offline start --reloadHandler",

@@ -129,6 +129,7 @@ const codepipeline = new aws.codepipeline.Pipeline(identifier, {
                 APIENV_COGNITO_ARN: pool.arn,
                 API_GATEWAY_ID: apiGateway.id,
                 API_GATEWAY_ROOT_ID: apiGateway.rootResourceId,
+                APIENV_STRAVA_CLIENT_SECRET: config.require('strava-client-secret')
               },
               environmentSecretKeys: ["PULUMI_ACCESS_TOKEN"],
               codepipelineBucket: codepipelineBucket.arn,

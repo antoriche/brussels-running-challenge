@@ -45,7 +45,7 @@ export const cloudfront = new aws.cloudfront.Distribution(identifier, {
       },
     },
   ],
-  aliases: [url],
+  aliases: [url].filter(x=>!!x),
   defaultCacheBehavior: {
     allowedMethods: ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"],
     cachedMethods: ["GET", "HEAD"],

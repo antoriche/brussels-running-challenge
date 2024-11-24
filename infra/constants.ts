@@ -7,19 +7,7 @@ export const project = pulumi.getProject();
 
 export const env = pulumi.getStack();
 
-let _region;
-switch (process.env.CLOUD) {
-  case "azure":
-    _region = require("@pulumi/azure-native").config.location;
-    break;
-  case "aws":
-    _region = require("@pulumi/aws").getRegionOutput().name;
-    break;
-  default:
-    _region = undefined;
-}
-
-export const region = _region;
+export const region = require("@pulumi/aws").getRegionOutput().name;
 
 export const repository = config.get("repository");
 

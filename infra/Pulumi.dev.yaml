@@ -1,17 +1,17 @@
 config:
   aws:region: eu-west-1
   azure-native:location: westeurope
-  boilerplate:api-env:
+  brussels-running-challenge:api-env:
     # APIENV_COGNITO_ARN:
     APIENV_AWS_DB_SECRET_ARN: null
-  boilerplate:app-env:
+  brussels-running-challenge:app-env:
     # REACT_APP_COGNITO_REGION:
     # REACT_APP_COGNITO_USER_POOL_ID:
     # REACT_APP_COGNITO_APP_CLIENT_ID:
     REACT_APP_API_URL: null
-  boilerplate:branch: develop
-  boilerplate:domain:
+  brussels-running-challenge:branch: develop
+  brussels-running-challenge:domain:
     certificateArn: arn:aws:acm:us-east-1:237162849109:certificate/cb181e76-79d4-4b1a-8a0d-be9f49be6ee5
     url: boilerplate-tst.jetpack.ai
     zoneId: Z2KNORYF9I04LR
-  boilerplate:repository: jetpackAI/boilerplate
+  brussels-running-challenge:repository: jetpackAI/boilerplate
