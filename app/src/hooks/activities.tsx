@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAPI } from "../services/api";
 import { queryClient } from "../App";
-import { StravaListedActivity } from "shared/strava";
+import { StravaListedActivity } from "../services/strava";
 
 export const getActivities_ = async () => {
   const api = await getAPI();
