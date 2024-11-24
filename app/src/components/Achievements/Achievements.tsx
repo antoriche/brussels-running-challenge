@@ -1,43 +1,21 @@
-import React from "react";
-import { useRunPath } from "../../hooks/useRunPath";
+import React, { useMemo } from "react";
 import { Col, Progress, Row } from "antd";
-import challenges, { Challenge } from "./challenges";
 
-import { useWorker } from "@koale/useworker";
-import { useQuery } from "@tanstack/react-query";
-import { FeatureCollection, GeoJsonProperties, LineString } from "geojson";
-
-const workerFn = (ranGeojson: FeatureCollection<LineString, GeoJsonProperties>, challenges: Challenge[]) => {
-  console.log("worker");
-  return challenges
-    .map<
-      Challenge & {
-        percent: number;
-      }
-    >((challenge) => ({
-      ...challenge,
-      percent: challenge.percentage(ranGeojson) * 100,
-    }))
-    .sort((a, b) => b.percent - a.percent);
+type AchievementsProps = {
+  percentByCommune: Record<string, number>;
 };
 
-function Achievements() {
-  const ranGeojson = useRunPath();
-  const [worker, workerController] = useWorker(workerFn);
-
-  const { data: sortedChallenges = [] } = useQuery({
-    queryKey: ["sortedChallenges", ranGeojson],
-    queryFn: async () => {
-      if (!ranGeojson) return [];
-      await workerController.kill();
-
-      console.log("navigator", navigator.serviceWorker);
-      console.log("queryFn", ranGeojson);
-      const result = await worker(ranGeojson, challenges);
-      console.log("result", result);
-      return result;
-    },
-  });
+function Achievements({ percentByCommune }: AchievementsProps) {
+  const challenges = useMemo(
+    () =>
+      Object.entries(percentByCommune)
+        .map(([commune, percent]) => ({
+          name: `Run in ${commune}`,
+          percent: percent * 100,
+        }))
+        .sort((a, b) => b.percent - a.percent),
+    [percentByCommune],
+  );
 
   return (
     <div
@@ -46,7 +24,7 @@ function Achievements() {
       }}
     >
       <Row gutter={[16, 16]} style={{}} justify={"start"}>
-        {sortedChallenges.map((challenge) => (
+        {challenges.map((challenge) => (
           <Col
             key={challenge.name}
             span={8}

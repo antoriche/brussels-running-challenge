@@ -7,13 +7,15 @@ import { ConfigProvider, Spin, Tooltip } from "antd";
 import Achievements from "../Achievements/Achievements";
 import { useRunPath } from "../../hooks/useRunPath";
 import { useActivities } from "../../hooks/activities";
+import { usePercentByCommune } from "../../hooks/usePercentByCommune";
 
 function Home() {
   const isLogged = useIsLogged();
   const oauth = useOAuth();
 
   const ranGeojson = useRunPath();
-  const { data: activities, isLoading } = useActivities();
+  const { data: activities, isLoading: isLoading_useActivities } = useActivities();
+  const { data: percentByCommune = {}, isLoading: isLoading_usePercentByCommune } = usePercentByCommune(ranGeojson);
 
   return (
     <div
@@ -78,7 +80,7 @@ function Home() {
           </div>
         ) : (
           <>
-            {isLoading && (
+            {isLoading_useActivities || isLoading_usePercentByCommune ? (
               <div
                 style={{
                   color: "white",
@@ -95,8 +97,9 @@ function Home() {
                 </ConfigProvider>
                 Loading...
               </div>
+            ) : (
+              <Achievements percentByCommune={percentByCommune} />
             )}
-            {activities && <Achievements />}
           </>
         )}
       </div>
