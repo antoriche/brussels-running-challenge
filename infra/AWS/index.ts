@@ -107,7 +107,7 @@ const codepipeline = new aws.codepipeline.Pipeline(identifier, {
                 REACT_APP_COGNITO_REGION: region,
                 REACT_APP_COGNITO_USER_POOL_ID: pool.id,
                 REACT_APP_COGNITO_APP_CLIENT_ID: client.id,
-                REACT_APP_DOMAIN: cloudfront.domainName,
+                REACT_APP_DOMAIN: "https://" + cloudfront.domainName,
                 DISABLE_ESLINT_PLUGIN: true,
               },
               codepipelineBucket: codepipelineBucket.arn,

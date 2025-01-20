@@ -142,6 +142,7 @@ const workerFn = async (
   }
 
   function createIntermediatePointsInLine(line: GeoJSON.LineString, distance: number): GeoJSON.LineString {
+    if (!line.coordinates || line.coordinates.length < 2) return line;
     const lineString = turf.lineString(line.coordinates);
     const length = turf.length(lineString, { units: "meters" });
     const steps = Math.max(Math.floor(length / distance), 2);
@@ -198,6 +199,7 @@ const workerFn = async (
     return running_streets;
   } catch (e) {
     //to debug in the console
+    //return new Error(e.stack);
     return e;
   }
 };

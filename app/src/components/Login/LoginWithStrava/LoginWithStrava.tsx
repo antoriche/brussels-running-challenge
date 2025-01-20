@@ -2,7 +2,7 @@ import React from "react";
 import CONNECT_WITH_STRAVA from "../../../assets/connect_with_strava.png";
 
 const CLIENT_ID = process.env.REACT_APP_STRAVA_CLIENT_ID;
-const REDIRECT_URL = `https://${process.env.REACT_APP_DOMAIN}/oauth-login`;
+const REDIRECT_URL = `${process.env.REACT_APP_DOMAIN}/oauth-login`;
 function LoginWithStrava() {
   return (
     <a
