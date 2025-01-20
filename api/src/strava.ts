@@ -39,7 +39,7 @@ export async function listActivities(event: APIGatewayProxyEvent): Promise<APIGa
       }),
     );
   } catch (error) {
-    //console.error("fail", error.message);
+    console.error("fail", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ success: false, message: error.message }),

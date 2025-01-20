@@ -6,7 +6,7 @@ const REDIRECT_URL = `${process.env.REACT_APP_DOMAIN}/oauth-login`;
 function LoginWithStrava() {
   return (
     <a
-      href={`https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&amp;response_type=code&amp;scope=read,read_all,profile:read_all,activity:read,activity:read_all&amp;redirect_uri=${REDIRECT_URL}`}
+      href={`https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&amp;response_type=code&amp;scope=activity:read,activity:read_all&amp;redirect_uri=${REDIRECT_URL}`}
     >
       <img src={CONNECT_WITH_STRAVA} width="193" height="48" style={{ display: "block", marginRight: "-4px", marginLeft: "4px" }} />
     </a>
