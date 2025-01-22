@@ -45,6 +45,7 @@ function Home() {
         <div style={{ position: "absolute", top: 10, right: 10, display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ color: "lightgrey", fontSize: 14 }}>
             {oauth?.athlete?.firstname} {oauth?.athlete?.lastname}
+            {localStorage.getItem("USE_MOCK_DATA") && " (mock data)"}
           </div>
           <Tooltip title="Logout">
             <button
@@ -84,8 +85,17 @@ function Home() {
         </div>
 
         {isLogged === false ? (
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: 10 }}>
             <LoginWithStrava />
+            <a
+              style={{ color: "lightgrey", textDecoration: "underline", fontSize: "0.6rem" }}
+              onClick={() => {
+                localStorage.setItem("USE_MOCK_DATA", "true");
+                window.location.reload();
+              }}
+            >
+              Just try
+            </a>
           </div>
         ) : (
           <>

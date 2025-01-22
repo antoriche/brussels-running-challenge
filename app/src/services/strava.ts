@@ -1,21 +1,27 @@
 import axios, { AxiosInstance } from "axios";
+import { getMockAPI } from "./api.mock";
 
 export type StravaListedActivity = Awaited<ReturnType<StravaApi["listActivities"]>>[0];
 
 export type StravaActivity = Awaited<ReturnType<StravaApi["getActivity"]>>;
 
 export class StravaApi {
-  instance: AxiosInstance;
+  instance: Promise<AxiosInstance>;
   constructor(private authorizationHeader: string) {
-    this.instance = axios.create({
-      baseURL: "https://www.strava.com/api/v3",
-      headers: {
-        Authorization: this.authorizationHeader,
-      },
-    });
+    const mockData = localStorage.getItem("USE_MOCK_DATA");
+    this.instance = mockData
+      ? getMockAPI()
+      : new Promise(() =>
+          axios.create({
+            baseURL: "https://www.strava.com/api/v3",
+            headers: {
+              Authorization: this.authorizationHeader,
+            },
+          }),
+        );
   }
 
-  listActivities({ page, per_page }: { page?: number; per_page?: number }): Promise<
+  async listActivities({ page, per_page }: { page?: number; per_page?: number }): Promise<
     Array<{
       id: number;
       name: string;
@@ -29,7 +35,7 @@ export class StravaApi {
       };
     }>
   > {
-    return this.instance
+    return (await this.instance)
       .get("/athlete/activities", {
         params: {
           page,
@@ -39,7 +45,7 @@ export class StravaApi {
       .then((response) => response.data);
   }
 
-  getActivity(id: number): Promise<{
+  async getActivity(id: number): Promise<{
     id: number;
     name: string;
     map: {
@@ -48,15 +54,15 @@ export class StravaApi {
       polyline: string;
     };
   }> {
-    return this.instance
+    return (await this.instance)
       .get(`/activities/${id}`, {
         params: {},
       })
       .then((response) => response.data);
   }
 
-  getGPX(id: number): Promise<unknown> {
-    return this.instance
+  async getGPX(id: number): Promise<unknown> {
+    return (await this.instance)
       .get(`/routes/${id}/export_gpx`, {
         params: {},
       })

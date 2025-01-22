@@ -6,8 +6,8 @@ import { getOAuth } from "../services/auth";
 
 export const getActivitiesFromStrava = async () => {
   const oauth = await getOAuth();
-  if (!oauth) throw new Error("Not logged in");
-  const strava = new StravaApi(`Bearer ${oauth.access_token}`);
+  if (!oauth && !localStorage.getItem("USE_MOCK_DATA")) throw new Error("Not logged in");
+  const strava = new StravaApi(`Bearer ${oauth?.access_token}`);
   let query: Awaited<ReturnType<StravaApi["listActivities"]>> = [];
 
   let queryTmp: typeof query = [];

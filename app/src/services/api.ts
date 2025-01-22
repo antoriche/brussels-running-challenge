@@ -1,7 +1,12 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { getOAuth } from "./auth";
+import { getMockAPI } from "./api.mock";
 
-export async function getAPI(config: AxiosRequestConfig = {}) {
+export async function getAPI(config: AxiosRequestConfig = {}): Promise<AxiosInstance> {
+  if (localStorage.getItem("USE_MOCK_DATA")) {
+    return await getMockAPI();
+  }
+
   let token = "";
   const oauth = await getOAuth();
   if (oauth) {
