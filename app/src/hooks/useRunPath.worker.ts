@@ -2,6 +2,11 @@
 // @ts-nocheck
 /* eslint-disable consistent-default-export-name/default-export-match-filename -- wip */
 
+/*
+ * This file is an experiment using web worker. It is executed in a separate thread.
+ * It may not import anything from the main thread. Next step would probably be to build the worker with a webpack configuration.
+ */
+
 const workerFn = async (
   data: NonNullable<ReturnType<typeof useActivities>["data"]>,
   brusselsStreets,
@@ -9,7 +14,7 @@ const workerFn = async (
   importScripts("https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js");
   importScripts("https://cdn.jsdelivr.net/npm/lodash/lodash.min.js");
 
-  /** COPYING FUNCTIONS TO BE PACKAGES IN SERVICE WORKER */
+  /** COPYING FUNCTIONS TO BE PACKAGED IN SERVICE WORKER */
 
   function polylineToGeojson(str: string, precision?: number) {
     let index = 0;

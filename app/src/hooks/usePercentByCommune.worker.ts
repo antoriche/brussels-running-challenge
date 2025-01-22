@@ -1,6 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- wip
 //@ts-nocheck
 /* eslint-disable consistent-default-export-name/default-export-match-filename -- wip */
+
+/*
+ * This file is an experiment using web worker. It is executed in a separate thread.
+ * It may not import anything from the main thread. Next step would probably be to build the worker with a webpack configuration.
+ */
+
 async function worker(
   ranGeojson: GeoJSON.FeatureCollection<GeoJSON.LineString>,
   brusselsStreets: GeoJSON.FeatureCollection<GeoJSON.LineString | GeoJSON.MultiLineString>,
