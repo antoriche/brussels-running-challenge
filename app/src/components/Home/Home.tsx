@@ -2,7 +2,7 @@ import React from "react";
 import Map from "./Map";
 import LoginWithStrava from "../Login/LoginWithStrava/LoginWithStrava";
 import { logout, useIsLogged, useOAuth } from "../../services/auth";
-import { LogoutOutlined } from "@ant-design/icons";
+import { GithubOutlined, LogoutOutlined } from "@ant-design/icons";
 import { ConfigProvider, Spin, Tooltip } from "antd";
 import Achievements from "../Achievements/Achievements";
 import { useRunPath } from "../../hooks/useRunPath";
@@ -32,6 +32,15 @@ function Home() {
         paddingTop: "15vh",
       }}
     >
+      <a
+        href="https://github.com/antoriche/brussels-running-challenge"
+        title="https://github.com/antoriche/brussels-running-challenge"
+        target="_blank"
+        style={{ position: "absolute", top: 10, left: 10, color: "lightgrey", fontSize: 24 }}
+        rel="noreferrer"
+      >
+        <GithubOutlined />
+      </a>
       {isLogged && (
         <div style={{ position: "absolute", top: 10, right: 10, display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ color: "lightgrey", fontSize: 14 }}>
