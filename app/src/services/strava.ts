@@ -11,13 +11,15 @@ export class StravaApi {
     const mockData = localStorage.getItem("USE_MOCK_DATA");
     this.instance = mockData
       ? getMockAPI()
-      : new Promise(() =>
-          axios.create({
-            baseURL: "https://www.strava.com/api/v3",
-            headers: {
-              Authorization: this.authorizationHeader,
-            },
-          }),
+      : new Promise((resolve) =>
+          resolve(
+            axios.create({
+              baseURL: "https://www.strava.com/api/v3",
+              headers: {
+                Authorization: this.authorizationHeader,
+              },
+            }),
+          ),
         );
   }
 
