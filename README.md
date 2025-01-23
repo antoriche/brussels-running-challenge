@@ -1,6 +1,6 @@
 # Brussels Running Challenge
 
-Brussels Running Challenge is a web app that show you the streets you run in Brussels based on your Strava activities.
+[Brussels Running Challenge](https://d3ht7h1oliroyy.cloudfront.net/) is a web app that show you the streets you run in Brussels based on your Strava activities.
 
 ![Screenshot](https://github.com/antoriche/brussels-running-challenge/blob/main/screenshot.png)
 
