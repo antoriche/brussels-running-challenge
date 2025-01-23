@@ -1,5 +1,9 @@
 # Brussels Running Challenge
 
+Brussels Running Challenge is a web app that show you the streets you run in Brussels based on your Strava activities.
+
+![Screenshot](https://github.com/antoriche/brussels-running-challenge/blob/main/screenshot.png)
+
 ## Getting started
 
 1. Clone this repo
@@ -17,4 +21,4 @@ You'll need to run 3 terminals
 ## Deploy the app
 
 In `infra` folder, create and complete `Pulumi.<env>.yaml`  
-Deploy it with `pulumi up --stack JetpackAI/<env>`
+Deploy it with `pulumi up --stack <env>`
